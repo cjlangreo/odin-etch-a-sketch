@@ -1,0 +1,33 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Schoolbell", sans-serif;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#canvas {
+  height: 500px;
+  width: 500px;
+  box-shadow: black 0px 0px 10px;
+
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.pixel {
+  cursor: crosshair;
+  background: none;
+}
+
+.pixel:hover {
+  border: black solid 1px;
+}
