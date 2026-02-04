@@ -70,4 +70,6 @@ button.eraser {
 
 .controls {
   display: flex;
+  margin-top: 1rem;
+  column-gap: 1rem;
 }
