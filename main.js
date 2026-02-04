@@ -41,6 +41,14 @@ canvas.addEventListener("click", event => {
   fillOrErasePixel(event.target)
 })
 
+canvas.addEventListener("mouseover", event => {
+  if(!(Array.from(event.target.classList).includes("pixel"))) return
+
+  if(event.buttons === 1){
+    fillOrErasePixel(event.target)
+  }
+})
+
 function fillOrErasePixel(target){
   if(currentTool === "pencil"){
     target.style.background = color
