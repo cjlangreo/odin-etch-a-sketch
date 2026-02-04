@@ -64,3 +64,25 @@ const eraserButton = document.querySelector("button.eraser")
 const eraserIcon = document.querySelector("path.eraser")
 
 
+pencilButton.addEventListener("click", () => setCurrentTool("pencil"))
+eraserButton.addEventListener("click", () => setCurrentTool("eraser"))
+
+setCurrentTool("pencil")
+
+function setCurrentTool(tool){
+  if(tool === "pencil"){
+    currentTool = "pencil"
+    pencilButton.style.backgroundColor = "#606c38"
+    pencilIcon.setAttribute("fill", "#ffffff")
+
+    eraserButton.style.backgroundColor = "transparent"
+    eraserIcon.setAttribute("fill", "#606c38")
+  } else if (tool === "eraser"){
+    currentTool = "eraser"
+    eraserButton.style.backgroundColor = "#606c38"
+    eraserIcon.setAttribute("fill", "#ffffff")
+
+    pencilButton.style.backgroundColor = "transparent"
+    pencilIcon.setAttribute("fill", "#606c38")
+  }
+}
