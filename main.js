@@ -2,13 +2,15 @@ const canvas = document.getElementById("canvas")
 const colorPicker = document.getElementById("color-picker")
 let userSize = prompt("Grid size?");
 
-while(userSize > 100 || userSize < 1){
-  userSize = prompt("Invalid size! Choose a new size!")
-}
+let currentTool = "pencil"
 
 let color = "#000000";
 let clearColor = "#00000000"
 colorPicker.addEventListener("input", event => {color = event.target.value;})
+
+while(userSize > 100 || userSize < 1){
+  userSize = prompt("Invalid size! Choose a new size!")
+}
 
 addPixels(+userSize)
 
