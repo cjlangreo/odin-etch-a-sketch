@@ -56,5 +56,11 @@ function fillOrErasePixel(target){
     target.style.background = null
   }
 }
-  }
-})
+
+const pencilButton = document.querySelector("button.pencil")
+const pencilIcon = document.querySelector("path.pencil")
+
+const eraserButton = document.querySelector("button.eraser")
+const eraserIcon = document.querySelector("path.eraser")
+
+
