@@ -6,6 +6,7 @@ let currentTool = "pencil"
 
 let color = "#000000";
 let clearColor = "#00000000"
+
 colorPicker.addEventListener("input", event => {color = event.target.value;})
 
 while(userSize > 100 || userSize < 1){
@@ -21,6 +22,7 @@ function addPixels(gridSize){
     for(let j = 0; j < gridSize; j++){
       const pixel = document.createElement("div")
       pixel.className = "pixel"
+      pixel.draggable = false;
       pixel.setAttribute("style", `width:${pixelSize}px; height:${pixelSize}px`)
       canvas.appendChild(pixel)
     }
