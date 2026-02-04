@@ -14,6 +14,10 @@ body {
   background-color: #fefae0;
 }
 
+.title {
+  color: #606c38;
+}
+
 #canvas {
   height: 500px;
   width: 500px;
