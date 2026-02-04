@@ -7,6 +7,8 @@ let currentTool = "pencil"
 let color = "#000000";
 let clearColor = "#00000000"
 
+const clearButton = document.querySelector("button.clear")
+
 colorPicker.addEventListener("input", event => {color = event.target.value;})
 
 while(userSize > 100 || userSize < 1){
@@ -86,3 +88,10 @@ function setCurrentTool(tool){
     pencilIcon.setAttribute("fill", "#606c38")
   }
 }
+
+clearButton.addEventListener("click", () => {
+  const pixels = document.getElementsByClassName("pixel")
+  console.log(pixels);
+  
+  Array.from(pixels).forEach(pixel => pixel.style.backgroundColor = null)
+})

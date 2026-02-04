@@ -58,7 +58,8 @@ input[type="color"]::-moz-color-swatch {
 
 
 button.pencil,
-button.eraser {
+button.eraser,
+button.clear {
   width: 50px;
   cursor: pointer;
   background: none;
