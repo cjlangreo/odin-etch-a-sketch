@@ -1,6 +1,5 @@
 const canvas = document.getElementById("canvas")
 const colorPicker = document.getElementById("color-picker")
-let userSize = prompt("Grid size?");
 
 let currentTool = "pencil"
 
@@ -11,11 +10,8 @@ const clearButton = document.querySelector("button.clear")
 
 colorPicker.addEventListener("input", event => {color = event.target.value;})
 
-while(userSize > 100 || userSize < 1){
-  userSize = prompt("Invalid size! Choose a new size!")
-}
-
-addPixels(+userSize)
+const eyedropperButton = document.querySelector("button.eyedropper")
+const eyedropperIcon = document.querySelector("path.eyedropper")
 
 function addPixels(gridSize){
   const pixelSize = getPixelSize(gridSize)
