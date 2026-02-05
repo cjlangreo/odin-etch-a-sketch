@@ -35,7 +35,7 @@ function getPixelSize(gridSize){
 }
 
 
-canvas.addEventListener("click", event => {
+canvas.addEventListener("mousedown", event => {
   if(!(Array.from(event.target.classList).includes("pixel"))) return
 
   fillOrErasePixel(event.target)
