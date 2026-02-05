@@ -73,6 +73,18 @@ button.clear {
 
 .controls {
   display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+}
+
+.controls .drawing {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  column-gap: 1rem;
+}
+
+
   margin-top: 1rem;
   column-gap: 1rem;
 }
