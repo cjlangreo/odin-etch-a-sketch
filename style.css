@@ -85,6 +85,31 @@ button.clear {
 }
 
 
+.controls .grid-size {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin-top: 1rem;
+}
+
+.controls .grid-size > h2 {
+  text-align: center;
+}
+
+.controls .grid-size > input {
+  width: 100%;
+}
+
+.controls .grid-size > button {
+  width: fit-content;
+  margin-top: 1rem;
+  background-color: #606c38;
+  color: #fefae0;
+}
+
+.controls .grid-size > button:hover {
+  opacity: 70%;
+}
+
   column-gap: 1rem;
 }
