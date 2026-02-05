@@ -54,7 +54,14 @@ function useTool(target){
     target.style.background = color
   } else if (currentTool === "eraser") {
     target.style.background = null
+  } else if (currentTool === "eyedropper"){
+    colorPicker.value = rgbToHex(target.style.backgroundColor)
+    color = colorPicker.value
+    console.log(`Color picked: ${color}`);
+    
   }
+}
+
 }
 
 const pencilButton = document.querySelector("button.pencil")
