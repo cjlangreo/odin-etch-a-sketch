@@ -173,4 +173,28 @@ function destroyCanvas(){
     Array.from(pixels).forEach(pixel => pixel.remove())
 }
 
+const gridSizeCounter = document.getElementById("grid-size-counter")
+const gridSizeInput = document.getElementById("grid-size-input")
+const gridSizeApplyButton = document.getElementById("grid-size-apply")
+
+let gridSize = 64;
+updateGridSizeCounter(gridSize)
+addPixels(+gridSize)
+
+gridSizeInput.addEventListener("input",event => {
+  gridSize = +event.target.value
+  updateGridSizeCounter(gridSize)
+})
+
+gridSizeApplyButton.addEventListener("click", () => {
+  displayModal("This will clear the current canvas. Continue?", () => {
+    destroyCanvas()
+    addPixels(gridSize)
+  })
+})
+
+
+function updateGridSizeCounter(value){
+  gridSizeCounter.innerText = `${value} x ${value}`
+}
 
