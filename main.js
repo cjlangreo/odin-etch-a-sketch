@@ -125,3 +125,42 @@ clearButton.addEventListener("click", () => {
 })
 
 
+function displayModal(innerText, callback){
+  const modalBackground = document.createElement("div")
+  modalBackground.className = "modal-background"
+
+  console.log("Modal shown");
+  
+  const modal = document.createElement("div")
+  modal.className = "modal"
+  modal.textContent = innerText
+
+  const modalButtonContainer = document.createElement("div")
+  modalButtonContainer.className = "modal-button-container"
+
+  const cancelButton = document.createElement("button") 
+  cancelButton.className = "cancel"
+  cancelButton.textContent = "Cancel"
+
+  cancelButton.addEventListener("click", () => {
+    modalBackground.remove()
+  })
+  
+  
+  const yesButton = document.createElement("button")
+  yesButton.className = "yes"
+  yesButton.textContent = "Yes"
+  
+  yesButton.addEventListener("click", () => {
+    callback()
+    modalBackground.remove()
+  })
+  
+  modalButtonContainer.appendChild(yesButton)
+  modalButtonContainer.appendChild(cancelButton)
+  modal.appendChild(modalButtonContainer)
+  modalBackground.appendChild(modal)
+  document.body.appendChild(modalBackground)
+}
+
+
