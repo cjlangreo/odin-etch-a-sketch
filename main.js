@@ -16,6 +16,9 @@ const eyedropperIcon = document.querySelector("path.eyedropper")
 function addPixels(gridSize){
   const pixelSize = getPixelSize(gridSize)
 
+  console.log(`Creating a ${gridSize}x${gridSize} grid`);
+  
+
   for(let i = 0; i < gridSize; i++){
     for(let j = 0; j < gridSize; j++){
       const pixel = document.createElement("div")
