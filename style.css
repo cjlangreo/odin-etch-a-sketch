@@ -162,3 +162,13 @@ button {
 }
 
 
+button.yes {
+  border: #606c38 solid 1px;
+  background-color: transparent;
+  color: #606c38;
+}
+
+button.cancel {
+  background-color: #606c38;
+  color: #fefae0;
+}
