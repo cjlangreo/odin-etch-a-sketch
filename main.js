@@ -62,6 +62,17 @@ function useTool(target){
   }
 }
 
+function rgbToHex(rgb){
+  console.log(`Original color in rgb: ${rgb}`);
+  if(!rgb) return "#ffffff"
+  const numbersString = rgb.slice(4, -1)
+  const numbers = numbersString.split(", ").map(number => +number)
+  const hex = numbers.map(number => number.toString(16))
+
+  console.log(`Hex before formatting: ${hex}`);
+
+  const hexFormatted = hex.map(number => number.padStart(2, number))
+  return `#${hexFormatted.join("")}`
 }
 
 const pencilButton = document.querySelector("button.pencil")
