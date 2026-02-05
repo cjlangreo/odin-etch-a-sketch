@@ -163,4 +163,14 @@ function displayModal(innerText, callback){
   document.body.appendChild(modalBackground)
 }
 
+function clearCanvas(){
+    const pixels = document.getElementsByClassName("pixel")
+    Array.from(pixels).forEach(pixel => pixel.style.backgroundColor = null)
+}
+
+function destroyCanvas(){
+    const pixels = document.getElementsByClassName("pixel")
+    Array.from(pixels).forEach(pixel => pixel.remove())
+}
+
 
