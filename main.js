@@ -97,6 +97,8 @@ function setCurrentTool(tool){
 
     eraserButton.style.backgroundColor = "transparent"
     eraserIcon.setAttribute("fill", "#606c38")
+    eyedropperButton.style.backgroundColor = "transparent"
+    eyedropperIcon.setAttribute("fill", "#606c38")
   } else if (tool === "eraser"){
     currentTool = "eraser"
     eraserButton.style.backgroundColor = "#606c38"
@@ -104,6 +106,17 @@ function setCurrentTool(tool){
 
     pencilButton.style.backgroundColor = "transparent"
     pencilIcon.setAttribute("fill", "#606c38")
+    eyedropperButton.style.backgroundColor = "transparent"
+    eyedropperIcon.setAttribute("fill", "#606c38")
+  } else if (tool === "eyedropper"){
+    currentTool = "eyedropper"
+    eyedropperButton.style.backgroundColor = "#606c38"
+    eyedropperIcon.setAttribute("fill", "#ffffff")
+
+    pencilButton.style.backgroundColor = "transparent"
+    pencilIcon.setAttribute("fill", "#606c38")
+    eraserButton.style.backgroundColor = "transparent"
+    eraserIcon.setAttribute("fill", "#606c38")
   }
 }
 
