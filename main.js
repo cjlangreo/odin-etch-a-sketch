@@ -81,7 +81,9 @@ const pencilIcon = document.querySelector("path.pencil")
 const eraserButton = document.querySelector("button.eraser")
 const eraserIcon = document.querySelector("path.eraser")
 
-
+eyedropperButton.addEventListener("click", () => {
+  setCurrentTool("eyedropper")
+})
 pencilButton.addEventListener("click", () => setCurrentTool("pencil"))
 eraserButton.addEventListener("click", () => setCurrentTool("eraser"))
 
