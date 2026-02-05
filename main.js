@@ -38,18 +38,18 @@ function getPixelSize(gridSize){
 canvas.addEventListener("mousedown", event => {
   if(!(Array.from(event.target.classList).includes("pixel"))) return
 
-  fillOrErasePixel(event.target)
+  useTool(event.target)
 })
 
 canvas.addEventListener("mouseover", event => {
   if(!(Array.from(event.target.classList).includes("pixel"))) return
 
   if(event.buttons === 1){
-    fillOrErasePixel(event.target)
+    useTool(event.target)
   }
 })
 
-function fillOrErasePixel(target){
+function useTool(target){
   if(currentTool === "pencil"){
     target.style.background = color
   } else if (currentTool === "eraser") {
