@@ -23,7 +23,6 @@ function addPixels(gridSize){
     for(let j = 0; j < gridSize; j++){
       const pixel = document.createElement("div")
       pixel.className = "pixel"
-      pixel.draggable = false;
       pixel.setAttribute("style", `width:${pixelSize}px; height:${pixelSize}px`)
       canvas.appendChild(pixel)
     }
