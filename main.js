@@ -121,8 +121,7 @@ function setCurrentTool(tool){
 }
 
 clearButton.addEventListener("click", () => {
-  const pixels = document.getElementsByClassName("pixel")
-  console.log(pixels);
-  
-  Array.from(pixels).forEach(pixel => pixel.style.backgroundColor = null)
+  displayModal("Clear Canvas?", clearCanvas)
 })
+
+
