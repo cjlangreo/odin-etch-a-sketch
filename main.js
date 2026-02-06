@@ -1,24 +1,55 @@
 const canvas = document.getElementById("canvas")
+
+canvas.addEventListener("mousedown", event => useTool(event))
+canvas.addEventListener("mouseover", event => useTool(event))
+
+
 const colorPicker = document.getElementById("color-picker")
-
-let currentTool = "pencil"
-
-let color = "#000000";
-let clearColor = "#00000000"
+colorPicker.addEventListener("input", event => {color = event.target.value;})
 
 const clearButton = document.querySelector("button.clear")
+clearButton.addEventListener("click", () => displayModal("Clear Canvas?", clearCanvas))
 
-colorPicker.addEventListener("input", event => {color = event.target.value;})
+const pencilButton = document.querySelector("button.pencil")
+const pencilIcon = document.querySelector("path.pencil")
+pencilButton.addEventListener("click", () => setCurrentTool("pencil"))
+
+const eraserButton = document.querySelector("button.eraser")
+const eraserIcon = document.querySelector("path.eraser")
+eraserButton.addEventListener("click", () => setCurrentTool("eraser"))
 
 const eyedropperButton = document.querySelector("button.eyedropper")
 const eyedropperIcon = document.querySelector("path.eyedropper")
+eyedropperButton.addEventListener("click", () => setCurrentTool("eyedropper"))
+
+const gridSizeCounter = document.getElementById("grid-size-counter")
+const gridSizeInput = document.getElementById("grid-size-input")
+const gridSizeApplyButton = document.getElementById("grid-size-apply")
+
+
+const mainColor = "#606c38"
+
+gridSizeInput.addEventListener("input",event => {
+  gridSize = +event.target.value
+  updateGridSizeCounter(gridSize)
+})
+
+gridSizeApplyButton.addEventListener("click", () => {
+  displayModal("This will clear the current canvas. Continue?", () => {
+    destroyCanvas()
+    addPixels(gridSize)
+  })
+})
+
+let gridSize = 64;
+let currentTool = "pencil"
+let color = "#000000";
 
 function addPixels(gridSize){
   const pixelSize = getPixelSize(gridSize)
 
   console.log(`Creating a ${gridSize}x${gridSize} grid`);
   
-
   for(let i = 0; i < gridSize; i++){
     for(let j = 0; j < gridSize; j++){
       const pixel = document.createElement("div")
@@ -34,96 +65,56 @@ function getPixelSize(gridSize){
   return pixelSize
 }
 
-
-canvas.addEventListener("mousedown", event => {
+function useTool(event){
   if(!(Array.from(event.target.classList).includes("pixel"))) return
-
-  useTool(event.target)
-})
-
-canvas.addEventListener("mouseover", event => {
-  if(!(Array.from(event.target.classList).includes("pixel"))) return
-
-  if(event.buttons === 1){
-    useTool(event.target)
-  }
-})
-
-function useTool(target){
-  if(currentTool === "pencil"){
-    target.style.background = color
-  } else if (currentTool === "eraser") {
-    target.style.background = null
-  } else if (currentTool === "eyedropper"){
-    colorPicker.value = rgbToHex(target.style.backgroundColor)
-    color = colorPicker.value
-    console.log(`Color picked: ${color}`);
-    
+  if(event.buttons !== 1 && event.type === "mouseover") return
+  
+  
+  switch(currentTool){
+    case "pencil":
+      event.target.style.background = color
+      break
+    case "eraser":
+      event.target.style.background = null
+      break
+    case "eyedropper":
+      colorPicker.value = rgbToHex(event.target.style.backgroundColor)
+      color = colorPicker.value
+      console.log(`Color picked: ${color}`);
+      setCurrentTool("pencil")
   }
 }
 
 function rgbToHex(rgb){
-  console.log(`Original color in rgb: ${rgb}`);
+  console.log(`Original color in rgb: ${rgb ?? "rgb(1,1,1"}`);
   if(!rgb) return "#ffffff"
   const numbersString = rgb.slice(4, -1)
   const numbers = numbersString.split(", ").map(number => +number)
-  const hex = numbers.map(number => number.toString(16))
-
-  console.log(`Hex before formatting: ${hex}`);
-
-  const hexFormatted = hex.map(number => number.padStart(2, number))
-  return `#${hexFormatted.join("")}`
+  const hex = numbers.map(number => number.toString(16).padStart(2, "0"))
+  return `#${hex.join("")}`
 }
-
-const pencilButton = document.querySelector("button.pencil")
-const pencilIcon = document.querySelector("path.pencil")
-
-const eraserButton = document.querySelector("button.eraser")
-const eraserIcon = document.querySelector("path.eraser")
-
-eyedropperButton.addEventListener("click", () => {
-  setCurrentTool("eyedropper")
-})
-pencilButton.addEventListener("click", () => setCurrentTool("pencil"))
-eraserButton.addEventListener("click", () => setCurrentTool("eraser"))
-
-setCurrentTool("pencil")
 
 function setCurrentTool(tool){
+  eraserButton.style.backgroundColor = "transparent"
+  eraserIcon.setAttribute("fill", mainColor)
+  eyedropperButton.style.backgroundColor = "transparent"
+  eyedropperIcon.setAttribute("fill", mainColor)
+  pencilButton.style.backgroundColor = "transparent"
+  pencilIcon.setAttribute("fill", mainColor)
+
+  currentTool = tool
+  
   if(tool === "pencil"){
-    currentTool = "pencil"
-    pencilButton.style.backgroundColor = "#606c38"
+    pencilButton.style.backgroundColor = mainColor
     pencilIcon.setAttribute("fill", "#ffffff")
-
-    eraserButton.style.backgroundColor = "transparent"
-    eraserIcon.setAttribute("fill", "#606c38")
-    eyedropperButton.style.backgroundColor = "transparent"
-    eyedropperIcon.setAttribute("fill", "#606c38")
   } else if (tool === "eraser"){
-    currentTool = "eraser"
-    eraserButton.style.backgroundColor = "#606c38"
+    eraserButton.style.backgroundColor = mainColor
     eraserIcon.setAttribute("fill", "#ffffff")
-
-    pencilButton.style.backgroundColor = "transparent"
-    pencilIcon.setAttribute("fill", "#606c38")
-    eyedropperButton.style.backgroundColor = "transparent"
-    eyedropperIcon.setAttribute("fill", "#606c38")
   } else if (tool === "eyedropper"){
-    currentTool = "eyedropper"
-    eyedropperButton.style.backgroundColor = "#606c38"
+    eyedropperButton.style.backgroundColor = mainColor
     eyedropperIcon.setAttribute("fill", "#ffffff")
-
-    pencilButton.style.backgroundColor = "transparent"
-    pencilIcon.setAttribute("fill", "#606c38")
-    eraserButton.style.backgroundColor = "transparent"
-    eraserIcon.setAttribute("fill", "#606c38")
   }
 }
-
-clearButton.addEventListener("click", () => {
-  displayModal("Clear Canvas?", clearCanvas)
-})
-
 
 function displayModal(innerText, callback){
   const modalBackground = document.createElement("div")
@@ -173,28 +164,11 @@ function destroyCanvas(){
     Array.from(pixels).forEach(pixel => pixel.remove())
 }
 
-const gridSizeCounter = document.getElementById("grid-size-counter")
-const gridSizeInput = document.getElementById("grid-size-input")
-const gridSizeApplyButton = document.getElementById("grid-size-apply")
-
-let gridSize = 64;
-updateGridSizeCounter(gridSize)
-addPixels(+gridSize)
-
-gridSizeInput.addEventListener("input",event => {
-  gridSize = +event.target.value
-  updateGridSizeCounter(gridSize)
-})
-
-gridSizeApplyButton.addEventListener("click", () => {
-  displayModal("This will clear the current canvas. Continue?", () => {
-    destroyCanvas()
-    addPixels(gridSize)
-  })
-})
-
-
 function updateGridSizeCounter(value){
   gridSizeCounter.innerText = `${value} x ${value}`
 }
 
+
+setCurrentTool("pencil")
+updateGridSizeCounter(gridSize)
+addPixels(+gridSize)
