@@ -58,21 +58,20 @@ function useTool(target){
     colorPicker.value = rgbToHex(target.style.backgroundColor)
     color = colorPicker.value
     console.log(`Color picked: ${color}`);
-    
   }
 }
 
 function rgbToHex(rgb){
-  console.log(`Original color in rgb: ${rgb}`);
+  console.log(`Original color in rgb: ${rgb ?? "rgb(1,1,1"}`);
   if(!rgb) return "#ffffff"
   const numbersString = rgb.slice(4, -1)
+  
   const numbers = numbersString.split(", ").map(number => +number)
-  const hex = numbers.map(number => number.toString(16))
+  
+  const hex = numbers.map(number => number.toString(16).padStart(2, "0"))
 
-  console.log(`Hex before formatting: ${hex}`);
 
-  const hexFormatted = hex.map(number => number.padStart(2, number))
-  return `#${hexFormatted.join("")}`
+  return `#${hex.join("")}`
 }
 
 const pencilButton = document.querySelector("button.pencil")
